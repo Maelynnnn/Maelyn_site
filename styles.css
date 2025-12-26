@@ -1,0 +1,206 @@
+:root{
+  --bg: #070707;
+  --paper: #efe9df;     /* warm off-white */
+  --ink: #0a0a0a;
+  --hint: rgba(239,233,223,.72);
+}
+
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+
+body{
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  background: var(--bg);
+  color: var(--paper);
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar{
+  width: 0;
+  background: transparent;
+}
+
+/* Stars layer (behind sphere) */
+#stars{
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  z-index: 0;
+}
+
+/* 3D sphere layer */
+#sphere{
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  z-index: 1;
+}
+
+/* Scroll stage */
+.hero{
+  position: relative;
+  height: 200vh;
+  z-index: 2;
+}
+
+.center-title{
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+#title{
+  margin: 0;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  font-size: clamp(36px, 5vw, 72px);
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 180ms linear, transform 180ms ease;
+}
+
+.scroll-hint{
+  position: sticky;
+  top: calc(100vh - 72px);
+  height: 72px;
+  display: grid;
+  place-items: center;
+  color: var(--hint);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.main{
+  position: relative;
+  z-index: 3;
+}
+
+.portfolio{
+  padding: 72px 6vw 80px;
+  color: var(--ink);
+}
+
+.portfolio-head h2{
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 600;
+}
+.portfolio-head p{
+  margin: 0 0 28px;
+  opacity: .75;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+}
+
+.card{
+  grid-column: span 6;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,.52);
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+.card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.12);
+}
+
+.card img{
+  width: 100%;
+  aspect-ratio: 2192 / 1058;   /* 统一封面比例：不想16:9就改这里 */
+  height: auto;
+  object-fit: contain;    /* 关键：完整显示，不裁切 */
+  display: block;
+  background: rgba(0,0,0,.06); /* 图片未填满区域时的底色 */
+}
+
+
+.meta{
+  padding: 14px 14px 16px;
+}
+
+.meta .name{
+  font-weight: 650;
+  margin-bottom: 6px;
+}
+
+.meta .desc{
+  font-size: 13px;
+  opacity: .7;
+  line-height: 1.35;
+  color:rgb(0, 0, 0)
+}
+
+.footer{
+  padding: 0 6vw 40px;
+  color: rgba(0,0,0,.65);
+}
+
+@media (max-width: 920px){
+  .card{ grid-column: span 12; }
+  .card img{ height: 220px; }
+}
+
+/* ---------- About (full-screen image, fade in/out on scroll) ---------- */
+.about{
+  height: 180vh;          /* 决定“停留时间”，想更久就加大，例如 220vh */
+  position: relative;
+  padding-top: 10vh;   /* 控制 about 顶部空隙 */
+  padding-bottom: 12vh;
+}
+
+.about-sticky{
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  place-items: start center;
+  padding-top: 6vh;
+
+  pointer-events: none;
+}
+
+
+.about-sticky img{
+  width: 80%;
+  height: 80%;
+  object-fit: cover;      /* 你要全屏铺满就用 cover；想不裁切改 contain */
+  opacity: 0;             /* 默认隐藏，交给 JS 控制渐显 */
+  transform: scale(1.02); /* 很轻微的“沉浸感” */
+  transition: opacity 0.06s linear; /* 防抖动，细微平滑 */
+  will-change: opacity;
+}
+
+.portfolio-head{
+  margin-bottom: 22px;
+}
+
+.portfolio-head h2{
+  margin: 0 0 12px 0;
+}
+
+#about-visible-anchor{
+  position: relative;
+  top: 20vh;   /* 👈 核心参数：控制“跳转后图片显现程度” */
+}

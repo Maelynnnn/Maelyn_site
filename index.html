@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maelyn And Her World</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Stars layer (2D) -->
+  <canvas id="stars"></canvas>
+
+  <!-- 3D Sphere layer -->
+  <canvas id="sphere"></canvas>
+
+  <section class="hero" id="top">
+    <div class="center-title" aria-hidden="true">
+      <h1 id="title">Maelyn And Her World.</h1>
+    </div>
+    <div class="scroll-hint">Scroll</div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-sticky">
+        <div id="about-visible-anchor"></div>
+        <img src="assets/aboutme.png" alt="About Maelyn" id="aboutImg" />
+    </div>
+  </section>
+
+
+
+  <main class="main">
+    <section class="portfolio" id="portfolio">
+      <div class="portfolio-head">
+        <h2>Projects</h2>
+      </div>
+
+      <div class="grid">
+        <a class="card" href="projects/project-template.html?project=just-the-two-of-us">
+          <img src="assets/j2.png" alt="Just The Two Of Us" loading="lazy"/>
+          <div class="meta">
+            <div class="name">Just The Two Of Us</div>
+            <div class="desc">Kinetic Sculpture (2025)</div>
+          </div>
+        </a>
+
+        <a class="card" href="projects/project-template.html?project=no-one-is-a-lonely-planet">
+          <img src="assets/nilp.png" alt="No One Is a Lonely Planet" loading="lazy"/>
+          <div class="meta">
+            <div class="name">No One Is a Lonely Planet</div>
+            <div class="desc">Interactive Public Web Narrative Art (2025)</div>
+          </div>
+        </a>
+
+        <a class="card" href="projects/project-template.html?project=now-the-city-speaks">
+          <img src="assets/ntcs.png" alt="Now The City Speaks" loading="lazy"/>
+          <div class="meta">
+            <div class="name">Now The City Speaks</div>
+            <div class="desc">AI-driven Interactive Narrative System (2025)</div>
+          </div>
+        </a>
+
+        <a class="card" href="projects/project-template.html?project=xiaomei">
+          <img src="assets/mei.png" alt="Xiaomei" loading="lazy"/>
+          <div class="meta">
+            <div class="name">小梅Mei</div>
+            <div class="desc">Interactive Narrative Installation (2025)</div>
+          </div>
+        </a>
+
+        <a class="card" href="projects/project-template.html?project=swinging-garden">
+            <img src="assets/sg.png" alt="Swinging Garden" loading="lazy"/>
+            <div class="meta">
+                <div class="name">Swinging Garden</div>
+                <div class="desc">Creative Industrial Design (2024)</div>
+            </div>
+        </a>
+
+        <a class="card" href="projects/project-template.html?project=three">
+            <img src="assets/3.png" alt="Three" loading="lazy"/>
+            <div class="meta">
+                <div class="name">LAB 3</div>
+                <div class="desc">Web-Based Alternate Reality Meta Game (2024)</div>
+            </div>
+         </a>
+
+        <a class="card" href="projects/project-template.html?project=until-you">
+            <img src="assets/uy.png" alt="Until You" loading="lazy"/>
+            <div class="meta">
+                <div class="name">Until You</div>
+                <div class="desc">Signal-Responsive Web Installation (2025)</div>
+            </div>
+        </a>
+
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© <span id="year"></span> Maelyn Lu</div>
+    </footer>
+  </main>
+
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
