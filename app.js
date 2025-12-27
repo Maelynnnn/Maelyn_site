@@ -107,11 +107,11 @@ function spawnMeteor(timeSec){
 
     // 起点在右侧外
     x0: SW * 1.1,
-    y0: y0,
+    y0: y0 - y0 * 0.5,
 
     // 终点在左下方
     x1: -SW * 0.1,
-    y1: y0 + SH*(0.15 + rand()*0.25),
+    y1: y0 + SH*(0.65 + rand()*0.25),
 
     w: 0.6 + rand()*0.8,   // 细线
     a: 0.25 + rand()*0.25
