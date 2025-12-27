@@ -2,9 +2,30 @@
 
 .wrap{ padding-top: 32px; }
 
-.muted{
-  max-width: 720px;
-  margin-bottom: 32px;
+.bio-content {
+  max-width: 680px;  /* 限制宽度，这是最佳阅读宽度的黄金比例 */
+  margin-bottom: 50px; /* 和下方的 CV 标题拉开足够距离 */
+}
+
+.bio-content p {
+  font-size: 15px;
+  line-height: 1.8;      /* 关键：宽松的行高带来呼吸感 */
+  color: rgba(10, 10, 10, 0.75); /* 深灰文字，比纯黑更有质感 */
+  margin-bottom: 24px;   /* 段落之间的空隙 */
+  letter-spacing: 0.01em; /* 极微小的字间距，提升精致度 */
+}
+
+/* 针对强调文字的样式 */
+.bio-content strong {
+  font-weight: 600;
+  color: rgba(10, 10, 10, 0.95); /* 强调文字颜色更深一点 */
+}
+
+/* 稍微调整一下 h1，让它和正文更搭配 */
+.wrap h1 {
+  font-size: 32px;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
 }
 
 .cvhead{
