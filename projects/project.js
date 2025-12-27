@@ -1,23 +1,6 @@
 document.getElementById("year").textContent = new Date().getFullYear();
 
 const PROJECTS = {
-  "just-the-two-of-us": {
-    title: "Just The Two Of Us",
-    facts: {
-      Time: "2025",
-      Type: "Kinetic Sculpture",
-      Medium: ["Wood", "Arduino","Large-Scale Sculpture","Environmental Experience"],
-      Tools: ["Arduino","Physical Installation"]
-    },
-    desc: [
-      `Just The Two Of Us is a 2 × 3 meter kinetic installation consisting of 45 vertically actuated modules suspended overhead. 
-      The machine operates according to its own internal logic, alternating between movement and rest, independent of human control. 
-      By placing humans and the machine in a shared space of quiet coexistence rather than control, the work examines whether a different relationship 
-      can emerge when humans and machines meet on equal terms.`
-    ],
-    gallery: ["../assets/j2/1.png", "../assets/j2/2.png", "../assets/j2/3.png", "../assets/j2/4.png"]
-  },
-
   "no-one-is-a-lonely-planet": {
     title: "No One Is a Lonely Planet",
     facts: {
@@ -55,13 +38,32 @@ const PROJECTS = {
     gallery: ["../assets/ntcs/1.png", "../assets/ntcs/2.png", "../assets/ntcs/3.png", "../assets/ntcs/4.png", "../assets/ntcs/5.png"]
   },
 
+  "just-the-two-of-us": {
+    title: "Just The Two Of Us",
+    facts: {
+      Time: "2025",
+      Type: "Kinetic Sculpture",
+      Medium: ["Wood", "Arduino","Large-Scale Sculpture","Environmental Experience"],
+      Tools: ["Arduino","Physical Installation"],
+      PlayThrough:"https://youtu.be/0CI6I_grZ44"
+    },
+    desc: [
+      `Just The Two Of Us is a 2 × 3 meter kinetic installation consisting of 45 vertically actuated modules suspended overhead. 
+      The machine operates according to its own internal logic, alternating between movement and rest, independent of human control. 
+      By placing humans and the machine in a shared space of quiet coexistence rather than control, the work examines whether a different relationship 
+      can emerge when humans and machines meet on equal terms.`
+    ],
+    gallery: ["../assets/j2/1.png", "../assets/j2/2.png", "../assets/j2/3.png", "../assets/j2/4.png"]
+  },
+
   "xiaomei": {
     title: "小梅 Mei",
     facts: {
       Time: "2025",
       Type: "Interactive Narrative Installation",
       Medium: ["Physical Computing","Interactive Installation","Storytelling"],
-      Tools: ["Arduino","Physical Installation","Videos", "Environmental Experience"]
+      Tools: ["Arduino","Physical Installation","Videos", "Environmental Experience"],
+      PlayThrough:"https://www.youtube.com/watch?v=ZkMdXIuhMuI&feature=youtu.be"
     },
     desc: [
       `Mei is an interactive narrative installation that shines a spotlight on the educational inequities 
@@ -136,6 +138,9 @@ document.getElementById("pTitle").textContent = p.title;
 
 document.getElementById("pFacts").innerHTML =
   Object.entries(p.facts).map(([k,v])=>{
+
+    if (k === "PlayThrough") return "";
+
     if(Array.isArray(v)){
       return `
         <div class="fact">
@@ -165,6 +170,55 @@ document.getElementById("pFacts").innerHTML =
 
 document.getElementById("pDesc").innerHTML =
   p.desc.map(d=>`<p>${d}</p>`).join("");
+
+
+function getYouTubeId(url) {
+  try {
+    const u = new URL(url);
+
+    // youtu.be/<id>
+    if (u.hostname.includes("youtu.be")) {
+      return u.pathname.replace("/", "");
+    }
+
+    // youtube.com/watch?v=<id>
+    if (u.searchParams.get("v")) {
+      return u.searchParams.get("v");
+    }
+
+    // youtube.com/embed/<id>
+    const m = u.pathname.match(/\/embed\/([a-zA-Z0-9_-]+)/);
+    if (m) return m[1];
+
+    return null;
+  } catch (e) {
+    return null;
+  }
+}
+
+const playUrl = p.facts?.PlayThrough;
+const videoWrap = document.getElementById("pVideo");
+
+if (playUrl && videoWrap) {
+  const vid = getYouTubeId(playUrl);
+  if (vid) {
+    videoWrap.hidden = false;
+    videoWrap.innerHTML = `
+      <div class="video-card">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/${vid}"
+            title="Playthrough video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    `;
+  }
+}
+
 
 document.getElementById("pGallery").innerHTML =
   p.gallery.map(src=>`<img src="${src}" loading="lazy">`).join("");
