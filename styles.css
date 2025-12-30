@@ -69,6 +69,8 @@ body::-webkit-scrollbar{
   transition: opacity 180ms linear, transform 180ms ease;
 }
 
+
+
 .scroll-hint{
   position: sticky;
   top: calc(100vh - 72px);
