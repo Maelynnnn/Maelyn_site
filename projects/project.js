@@ -45,7 +45,7 @@ const PROJECTS = {
       Type: "Kinetic Sculpture",
       Medium: ["Wood", "Arduino","Large-Scale Sculpture","Environmental Experience"],
       Tools: ["Arduino","Physical Installation"],
-      PlayThrough:"https://youtu.be/0CI6I_grZ44"
+      PlayThrough:"https://youtu.be/Rt_DIAC3GCQ"
     },
     desc: [
       `Just The Two Of Us is a 2 × 3 meter kinetic installation consisting of 45 vertically actuated modules suspended overhead. 
